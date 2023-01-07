@@ -6,7 +6,7 @@ const NewOtpInput = ({ value, numInputs, separator, className, ...props }) => {
   const handleChange = (otp) => setOtp(otp);
 
   return (
-    <div className={`w-[342px] flex justify-center ${className}`}>
+    <div className={`w-full flex justify-center ${className}`}>
       <OtpInput
         value={otp}
         onChange={handleChange}

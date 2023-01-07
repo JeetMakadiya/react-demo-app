@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 const DatePicker = ({ label, placeholder, className, ...props }) => {
   const dateRef = useRef();
   return (
-    <div class={`w-[342px] ${className}`}>
+    <div class={`w-full ${className}`}>
       <label className="text-sm font-normal">{label}</label>
       <input
         ref={dateRef}

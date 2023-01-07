@@ -1,18 +1,21 @@
 import React from "react";
+import FormWrapper from "../../Components/FormWrapper";
 import LoginForm from "../../Components/LoginForm";
 import PageHeader from "../../Components/PageHeader";
 
 const Login = () => {
   return (
-    <div className="flex min-h-[calc(100vh-58px)]">
-      <div className="w-[900px] bg-[#2F80ED]"></div>
-      <div className="w-[540px] mt-[80px] flex justify-center">
-        <div className="">
+    <div className="flex xl:flex-row flex-col ">
+      <div className="xl:w-[calc(100vw*0.625)] h-[calc(100vh-58px)] w-screen bg-[#2F80ED]"></div>
+      <div className="xl:w-[calc(100vw*0.375)] xl:h-[calc(100vh-58px)] w-screen flex justify-center overflow-y-auto">
+        <div className="mt-[80px] mb-[80px]">
           <PageHeader
             heading={"Welcome Back!"}
-            subHeading={"Login to yout account"}
+            subHeading={"Login to your account"}
           />
-          <LoginForm className="mt-9" />
+          <FormWrapper>
+            <LoginForm className="mt-9" />
+          </FormWrapper>
         </div>
       </div>
     </div>

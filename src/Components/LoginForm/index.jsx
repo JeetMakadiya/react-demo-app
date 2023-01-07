@@ -18,13 +18,13 @@ const LoginForm = ({ className }) => {
         placeholder="Enter Your Password"
         className="mb-4"
       />
-      <div className="flex justify-between mb-[42px]">
+      <div className="w-full flex justify-between mb-[42px]">
         <Checkbox label="Remember Me" labelColor={"#FF7F00"} />
         <a className="text-[#FF7F00] text-sm font-normal cursor-pointer hover:underline">
           Forgot Password?
         </a>
       </div>
-      <Button type="solid" size="large">
+      <Button type="solid" block>
         Sign In
       </Button>
     </form>
