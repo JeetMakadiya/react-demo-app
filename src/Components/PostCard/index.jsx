@@ -17,7 +17,7 @@ const PostCard = ({ userImage, userName, date, time, description, media }) => {
 
   return (
     <>
-      <div className="mt-3 bg-slate-200 shadow-slate-200 p-3">
+      <div className="mt-3 bg-white shadow-white p-3">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
             <img
@@ -30,7 +30,7 @@ const PostCard = ({ userImage, userName, date, time, description, media }) => {
               <span className="text-lg font-semibold text-[#222A33]">
                 {userName}
               </span>
-              <div className="flex mt-2 opacity-30">
+              <div className="flex flex-col sm:flex-row mt-2 opacity-30">
                 <div className="flex items-center mr-4">
                   <Calender size={"16px"} color={"#9494AE"} />
                   <span className="ml-1 text-sm">{date}</span>

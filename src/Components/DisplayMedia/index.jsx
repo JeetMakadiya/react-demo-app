@@ -3,7 +3,7 @@ import media from "../../Images/media.png";
 
 const DisplayMedia = ({ className, mediaList, size }) => {
   return (
-    <div className={`flex ${className}`}>
+    <div className={`flex flex-wrap ${className}`}>
       <img
         src={media}
         alt="imgs"

@@ -10,7 +10,7 @@ const Textarea = ({
   ...props
 }) => {
   return (
-    <div className={`${className}`}>
+    <div className={`flex flex-col w-full ${className}`}>
       <label
         className="text-sm font-normal"
         style={{ color: labelColor ? labelColor : "black" }}
@@ -20,7 +20,7 @@ const Textarea = ({
       <textarea
         name={name}
         placeholder={placeholder}
-        className="mt-2 h-[302px] w-[809px] border border-[#979797] rounded outline-[#FF7F00] p-4"
+        className="mt-2 h-[302px] w-full border border-[#979797] rounded outline-[#FF7F00] p-4"
       ></textarea>
     </div>
   );

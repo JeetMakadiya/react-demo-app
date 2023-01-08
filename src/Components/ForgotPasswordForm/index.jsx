@@ -11,7 +11,10 @@ const ForgotPasswordForm = ({ className }) => {
         placeholder="Enter Your Email"
         className="mb-6"
       />
-      <Button type="solid" className="mb-4" block>
+      <div className="flex justify-center mt-[30px] text-[#FF7F00] text-sm font-normal">
+        RESEND
+      </div>
+      <Button type="solid" className="mb-4 mt-[53px]" block>
         Send
       </Button>
     </form>

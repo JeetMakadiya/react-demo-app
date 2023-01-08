@@ -16,7 +16,7 @@ const CreatePostForm = ({ className }) => {
         Add Media
       </Button>
       <DisplayMedia className="mt-[35px]" size={"large"} />
-      <div className="mt-[76px] w-[809px] flex justify-center">
+      <div className="mt-[76px] flex justify-center">
         <Button type={"outlined-orange"} className="mr-4">
           Cancel
         </Button>

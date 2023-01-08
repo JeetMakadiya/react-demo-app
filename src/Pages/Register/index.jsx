@@ -11,7 +11,7 @@ const Register = () => {
         subHeading={"We need some details to setup your account"}
         className="md:w-[656px] w-screen px-8 md:px-0"
       />
-      <div className=" md:w-[656px] w-screen px-8 md:px-0">
+      <div className="md:w-[656px] w-screen px-8 md:px-0">
         <RegisterForm className="mt-9" />
       </div>
     </AuthLayout>

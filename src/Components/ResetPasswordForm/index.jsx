@@ -17,7 +17,7 @@ const ResetPasswordForm = ({ className }) => {
         placeholder="Enter Your Password"
         className="mb-4"
       />
-      <Button type="solid" size="large" className="mb-4">
+      <Button type="solid" className="mb-4" block>
         Save
       </Button>
     </form>

@@ -4,7 +4,7 @@ import PostCard from "../../Components/PostCard";
 const PostList = () => {
   return (
     <div className="m-5">
-      <h1 className="text-lg">Post List</h1>
+      <h1 className="text-xl font-semibold">Post List</h1>
       <PostCard
         userName={"Bessie Cooper"}
         date="15/12/2020"

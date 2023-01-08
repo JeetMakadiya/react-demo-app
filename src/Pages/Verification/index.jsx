@@ -9,8 +9,11 @@ const Verification = () => {
       <PageHeader
         heading={"Verification"}
         subHeading={"We have sent you OTP on your email address"}
+        className="md:w-[343px] w-screen px-8 md:px-0"
       />
-      <VerificationForm className="mt-9" />
+      <div className="md:w-[343px] w-screen px-8 md:px-0">
+        <VerificationForm className="mt-9" />
+      </div>
     </AuthLayout>
   );
 };

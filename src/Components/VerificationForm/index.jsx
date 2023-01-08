@@ -7,13 +7,13 @@ const VerificationForm = ({ className }) => {
     <form action="" className={`${className}`}>
       <div className="flex flex-col">
         <OtpInput numInputs={4} />
-        <div className="w-[342px] flex justify-center mt-[30px] text-[#FF7F00] text-sm font-normal">
+        <div className="flex justify-center mt-[30px] text-[#FF7F00] text-sm font-normal">
           RESEND
         </div>
-        <Button type="solid" size="large" className="mb-[30px] mt-[53px]">
+        <Button type="solid" className="mb-[30px] mt-[53px]" block>
           Verify
         </Button>
-        <Button type="outlined-orange" size="large">
+        <Button type="outlined-orange" block>
           Change Email
         </Button>
       </div>
