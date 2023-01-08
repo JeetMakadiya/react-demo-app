@@ -5,6 +5,7 @@ import Like from "../../Icons/Like";
 import More from "../../Icons/More";
 import UserImage from "../../Images/user.png";
 import DisplayMedia from "../DisplayMedia";
+import Modal from "../Modal";
 
 const PostCard = ({ userImage, userName, date, time, description, media }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -58,7 +59,11 @@ const PostCard = ({ userImage, userName, date, time, description, media }) => {
         <p className="font-medium text-[#222A33] mt-5">{description}</p>
         <DisplayMedia className="mt-[19px]" size={"small"} />
       </div>
-      {/* <Modal isModalOpen={isModalOpen} handleCancel={handleCancel} /> */}
+      <Modal
+        title={"Liked By"}
+        isModalOpen={isModalOpen}
+        handleCancel={handleCancel}
+      />
     </>
   );
 };
