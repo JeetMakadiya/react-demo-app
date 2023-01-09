@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import ChangePassword from "./Pages/ChangePassword";
 import CreatePost from "./Pages/CreatePost";
 import ForgotPassword from "./Pages/ForgotPassword";
@@ -9,6 +9,7 @@ import Register from "./Pages/Register";
 import ResetPassword from "./Pages/ResetPassword";
 import Verification from "./Pages/Verification";
 import RootLayout from "./Components/Layouts/RootLayout";
+import AppRoutes from "./Utils/routes";
 
 export const router = createBrowserRouter([
   {
@@ -16,39 +17,43 @@ export const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       {
-        path: "/login",
+        index: true,
+        element: <Navigate to={AppRoutes.Login} replace />,
+      },
+      {
+        path: AppRoutes.Login,
         element: <Login />,
       },
       {
-        path: "/register",
+        path: AppRoutes.Register,
         element: <Register />,
       },
       {
-        path: "/forgotpassword",
+        path: AppRoutes.ForgotPassword,
         element: <ForgotPassword />,
       },
       {
-        path: "/verification",
+        path: AppRoutes.Verification,
         element: <Verification />,
       },
       {
-        path: "/resetpassword",
+        path: AppRoutes.ResetPassword,
         element: <ResetPassword />,
       },
       {
-        path: "/createpost",
+        path: AppRoutes.CreatePost,
         element: <CreatePost />,
       },
       {
-        path: "/postlist",
+        path: AppRoutes.PostList,
         element: <PostList />,
       },
       {
-        path: "/profile",
+        path: AppRoutes.Profile,
         element: <Profile />,
       },
       {
-        path: "/changepassword",
+        path: AppRoutes.ChangePassword,
         element: <ChangePassword />,
       },
     ],
