@@ -3,11 +3,18 @@ import Input from "../UI/Input";
 import Checkbox from "../UI/Checkbox";
 import Button from "../UI/Button";
 import AppRoutes from "../../Utils/routes";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import validationSchema from "../../Utils/validationSchema";
+import { checkLogin } from "../../Utils/auth.utils";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../Store/Auth";
+import { showToast } from "../../Utils/showToast";
 
 const LoginForm = ({ className }) => {
+  const dispatch = useDispatch();
+  const authState = useSelector((store) => store.auth);
+  const navigate = useNavigate();
   const { handleChange, values, handleSubmit, handleBlur, touched, errors } =
     useFormik({
       initialValues: {
@@ -15,10 +22,18 @@ const LoginForm = ({ className }) => {
         password: "",
       },
       validationSchema: validationSchema.loginFormSchema,
-      onSubmit: (values) => {
+      onSubmit: async (values) => {
         console.log(values);
+        if (await checkLogin(authState.users, values)) {
+          await dispatch(login(values));
+          showToast("success", "User Logged In Successfully");
+          navigate(AppRoutes.PostList);
+        } else {
+          showToast("error", "Please Enter valid email/password.");
+        }
       },
     });
+  console.log(authState);
   return (
     <form className={`${className}`} onSubmit={handleSubmit}>
       <Input

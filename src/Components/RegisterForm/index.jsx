@@ -7,8 +7,17 @@ import DatePicker from "../UI/Datepicker";
 import ImageUpload from "../ImageUpload";
 import { useFormik } from "formik";
 import validationSchema from "../../Utils/validationSchema";
+import { useDispatch, useSelector } from "react-redux";
+import { register } from "../../Store/Auth";
+import { showToast } from "../../Utils/showToast";
+import { useNavigate } from "react-router-dom";
+import AppRoutes from "../../Utils/routes";
+import { isUserExist } from "../../Utils/auth.utils";
 
 const RegisterForm = ({ className }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const authState = useSelector((store) => store.auth);
   const {
     getFieldProps,
     handleChange,
@@ -17,8 +26,10 @@ const RegisterForm = ({ className }) => {
     handleBlur,
     touched,
     errors,
+    setFieldValue,
   } = useFormik({
     initialValues: {
+      image: "",
       firstName: "",
       lastName: "",
       email: "",
@@ -27,18 +38,34 @@ const RegisterForm = ({ className }) => {
       confirmPassword: "",
       dob: null,
       gender: "",
-      agreementShape: "",
+      agreement: "",
     },
     validationSchema: validationSchema.registerFormSchema,
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (values) => {
+      const userExist = await isUserExist(authState.users, values.email);
+      console.log("User exist", userExist);
+      if (!userExist) {
+        await dispatch(
+          register({ ...values, image: URL.createObjectURL(values.image) })
+        );
+        showToast("success", "User Registered Successfully");
+        navigate(AppRoutes.Login);
+      } else {
+        showToast("error", "Email Already Exist.");
+      }
     },
   });
   return (
-    <form action="" className={`${className}`}>
+    <form onSubmit={handleSubmit} className={`${className}`}>
       <div className="flex flex-col md:flex-row">
         <ImageUpload
           label={"Upload Image"}
+          name={"image"}
+          // {...getFieldProps("image")}
+          // onChange={()}
+          setFieldValue={setFieldValue}
+          touched={touched}
+          errors={errors}
           className="mb-6 sm:mr-[60px] mr-0"
         />
         <div className="mb-6"></div>
@@ -51,6 +78,8 @@ const RegisterForm = ({ className }) => {
           type="text"
           placeholder="Enter Your First Name"
           {...getFieldProps("firstName")}
+          touched={touched}
+          errors={errors}
           className="mb-6 mr-[60px]"
         />
         <Input
@@ -60,6 +89,8 @@ const RegisterForm = ({ className }) => {
           type="text"
           placeholder="Enter Your Last Name"
           {...getFieldProps("lastName")}
+          touched={touched}
+          errors={errors}
           className="mb-6"
         />
       </div>
@@ -79,7 +110,7 @@ const RegisterForm = ({ className }) => {
           label="Phone*"
           id={"phoneNo"}
           name={"phoneNo"}
-          type="text"
+          type="number"
           placeholder="Enter Your Phone Number"
           {...getFieldProps("phoneNo")}
           touched={touched}
@@ -105,7 +136,7 @@ const RegisterForm = ({ className }) => {
           name={"confirmPassword"}
           type="password"
           placeholder="Enter Your Password"
-          {...getFieldProps("")}
+          {...getFieldProps("confirmPassword")}
           touched={touched}
           errors={errors}
           className="mb-4"
@@ -117,7 +148,8 @@ const RegisterForm = ({ className }) => {
           id="dob"
           name="dob"
           placeholder="Select date"
-          {...getFieldProps("")}
+          // {...getFieldProps("dob")}
+          onChange={handleChange}
           touched={touched}
           errors={errors}
           className="mb-4 mr-[60px]"
@@ -126,7 +158,8 @@ const RegisterForm = ({ className }) => {
           label="Gender"
           id="gender"
           name={"gender"}
-          {...getFieldProps("")}
+          {...getFieldProps("gender")}
+          value={values.gender}
           touched={touched}
           errors={errors}
           className="mb-4"
@@ -138,7 +171,9 @@ const RegisterForm = ({ className }) => {
           id="agreement"
           name="agreement"
           labelColor="#9494AE"
-          {...getFieldProps("")}
+          {...getFieldProps("agreement")}
+          value={"agree"}
+          checked={values.agreement === "agree"}
           touched={touched}
           errors={errors}
           className="w-full mb-4 mr-[60px]"

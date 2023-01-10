@@ -1,33 +1,49 @@
 import React, { useRef, useState } from "react";
-import FemaleImg from "../../Images/female.png";
 
-const ImageUpload = ({ className, label }) => {
+const ImageUpload = ({
+  className,
+  label,
+  name,
+  touched,
+  errors,
+  setFieldValue,
+  ...props
+}) => {
   const fileInput = useRef();
   const [file, setFile] = useState();
   function handleChange(e) {
     setFile(URL.createObjectURL(e.target.files[0]));
+    setFieldValue(name, e.target.files[0]);
   }
+  const handleUpload = () => {
+    fileInput.current.click();
+  };
   return (
-    <div className={`flex items-center ${className}`}>
-      <img
-        src={file}
-        srcset=""
-        className="w-[102px] h-[102px] mr-9 bg-[#979797] border-2 border-[#979797] rounded-full"
-      />
-      <label
-        for="fileInput"
-        className="bg-[#F9F9F9] border-2 border-[#333333] w-[125px] h-[32px] rounded cursor-pointer flex items-center justify-center"
-        onClick={() => fileInput.current.click()}
-      >
-        {label}
-      </label>
+    <div className={`${className}`}>
       <input
         type="file"
         id="fileInput"
+        name={name}
         ref={fileInput}
         onChange={handleChange}
-        className="hidden"
+        hidden
       />
+      <div className="flex items-center">
+        <img
+          src={file}
+          srcset=""
+          className="w-[102px] h-[102px] mr-9 bg-[#979797] border-2 border-[#979797] rounded-full"
+        />
+        <button
+          className="bg-[#F9F9F9] border-2 border-[#333333] w-[125px] h-[32px] rounded cursor-pointer flex items-center justify-center"
+          onClick={handleUpload}
+        >
+          {label}
+        </button>
+      </div>
+      {touched && errors && touched[name] && errors[name] && (
+        <div className="mt-1 text-sm text-red-500">{errors[name]}</div>
+      )}
     </div>
   );
 };
