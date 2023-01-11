@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import OtpInput from "react-otp-input";
 
-const NewOtpInput = ({ value, numInputs, separator, className, ...props }) => {
-  const [otp, setOtp] = useState();
+const NewOtpInput = ({
+  value,
+  numInputs,
+  separator,
+  className,
+  setOtp,
+  otp,
+  ...props
+}) => {
   const handleChange = (otp) => setOtp(otp);
 
   return (

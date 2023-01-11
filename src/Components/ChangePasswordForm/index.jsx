@@ -6,9 +6,12 @@ import validationSchema from "../../Utils/validationSchema";
 import { useDispatch, useSelector } from "react-redux";
 import { changePassword, checkOldPassword } from "../../Store/Auth";
 import { showToast } from "../../Utils/showToast";
+import { useNavigate } from "react-router-dom";
+import AppRoutes from "../../Utils/routes";
 
 const ChangePasswordForm = ({ className }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const authState = useSelector((store) => store.auth);
   const {
     getFieldProps,
@@ -41,6 +44,7 @@ const ChangePasswordForm = ({ className }) => {
         );
         showToast("success", "Password Changed Successfully.");
         resetForm();
+        navigate(AppRoutes.Profile);
       }
     },
   });

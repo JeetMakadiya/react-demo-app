@@ -85,5 +85,22 @@ const validationSchema = {
       .required("*Confirm Password is required.")
       .oneOf([Yup.ref("newPassword"), null], "Passwords must match."),
   }),
+  forgotPasswordFormSchema: Yup.object({
+    email: emailShape,
+  }),
+  verificationFormSchema: Yup.object({
+    email: emailShape,
+  }),
+  resetPasswordFormSchema: Yup.object({
+    newPassword: Yup.string()
+      .required("*New Password is required.")
+      .matches(
+        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/,
+        "*password must contain 8 to 20 characters with at least one of each: uppercase, lowercase, number and special."
+      ),
+    confirmPassword: Yup.string()
+      .required("*Confirm Password is required.")
+      .oneOf([Yup.ref("newPassword"), null], "Passwords must match."),
+  }),
 };
 export default validationSchema;

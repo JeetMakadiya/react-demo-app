@@ -4,7 +4,6 @@ const initialState = {
   users: [],
   isLoggedIn: false,
   loggedInUserDetails: null,
-  isUserExist: false,
   isRightOldPassword: false,
 };
 
@@ -42,8 +41,12 @@ const authSlice = createSlice({
       state.loggedInUserDetails.dob = user.dob;
       state.loggedInUserDetails.gender = user.gender;
     },
-    forgotPassword(state, action) {},
-    resetPassword(state, action) {},
+    resetPassword(state, action) {
+      const itemIndex = state.users.findIndex(
+        (item) => item.email === action.payload.email
+      );
+      state.users[itemIndex].password = action.payload.password;
+    },
     checkOldPassword(state, action) {
       if (state.loggedInUserDetails.password === action.payload) {
         state.isRightOldPassword = true;
@@ -62,7 +65,6 @@ const authSlice = createSlice({
     logout(state) {
       state.isLoggedIn = false;
       state.loggedInUserDetails = null;
-      state.isUserExist = false;
       state.isRightOldPassword = false;
     },
   },

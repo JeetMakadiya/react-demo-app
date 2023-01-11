@@ -1,23 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import AppRoutes from "../../Utils/routes";
+import { showToast } from "../../Utils/showToast";
 import Button from "../UI/Button";
 import { OtpInput } from "../UI/OtpInput";
 
 const VerificationForm = ({ className }) => {
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const email = searchParams.get("email");
+  const [disabled, setDisabled] = useState(false);
+  const [otp, setOtp] = useState();
+  const verifyOTP = () => {
+    if (otp === "1234") {
+      setDisabled(true);
+      showToast("success", "OTP Verified");
+    } else {
+      setDisabled(false);
+      showToast("error", "Wrong OTP");
+    }
+  };
   return (
-    <form action="" className={`${className}`}>
-      <div className="flex flex-col">
-        <OtpInput numInputs={4} />
-        <div className="flex justify-center mt-[30px] text-[#FF7F00] text-sm font-normal">
-          RESEND
-        </div>
-        <Button type="solid" className="mb-[30px] mt-[53px]" block>
-          Verify
-        </Button>
-        <Button type="outlined-orange" block>
-          Change Email
-        </Button>
+    <div className="flex flex-col">
+      <OtpInput numInputs={4} otp={otp} setOtp={setOtp} />
+      <div className="flex justify-center mt-[30px] text-[#FF7F00] text-sm font-normal">
+        RESEND
       </div>
-    </form>
+      <Button
+        type="solid"
+        htmlType={"button"}
+        className={`mb-[30px] mt-[53px] ${disabled ? "opacity-50" : ""}`}
+        onClick={verifyOTP}
+        disabled={disabled}
+        block
+      >
+        Verify
+      </Button>
+      <Button
+        type="outlined-orange"
+        htmlType={"button"}
+        className={`${!disabled ? "opacity-50" : ""}`}
+        onClick={() => {
+          navigate(AppRoutes.ResetPassword + `?email=${email}`);
+        }}
+        block
+        disabled={!disabled}
+      >
+        Change Email
+      </Button>
+    </div>
   );
 };
 

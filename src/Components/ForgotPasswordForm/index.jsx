@@ -1,20 +1,66 @@
 import React from "react";
 import Input from "../UI/Input";
 import Button from "../UI/Button";
+import { useFormik } from "formik";
+import validationSchema from "../../Utils/validationSchema";
+import { isUserExist } from "../../Utils/auth.utils";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { showToast } from "../../Utils/showToast";
+import AppRoutes from "../../Utils/routes";
 
 const ForgotPasswordForm = ({ className }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const authState = useSelector((store) => store.auth);
+  const {
+    getFieldProps,
+    handleChange,
+    values,
+    handleSubmit,
+    handleBlur,
+    touched,
+    errors,
+    setFieldValue,
+  } = useFormik({
+    initialValues: {
+      email: "",
+    },
+    validationSchema: validationSchema.forgotPasswordFormSchema,
+    onSubmit: async (values) => {
+      const emailExist = await isUserExist(authState.users, values.email);
+      if (emailExist) {
+        navigate(AppRoutes.Verification + `?email=${values.email}`);
+        showToast(
+          "success",
+          "Verification Code Sent To Your Registered Mobile no.:1234"
+        );
+      } else {
+        showToast("error", "Wrong Email Address.");
+      }
+    },
+  });
   return (
-    <form action="" className={`${className}`}>
+    <form onSubmit={handleSubmit} className={`flex flex-col ${className}`}>
       <Input
+        label="Email"
+        id="email"
+        name="email"
         type="email"
-        label="Email*"
         placeholder="Enter Your Email"
+        {...getFieldProps("email")}
+        touched={touched}
+        errors={errors}
         className="mb-6"
       />
-      <div className="flex justify-center mt-[30px] text-[#FF7F00] text-sm font-normal">
+      <button
+        type="button"
+        className="mt-3 text-[#FF7F00] text-sm font-normal cursor-pointer"
+        disabled
+      >
         RESEND
-      </div>
-      <Button type="solid" className="mb-4 mt-[53px]" block>
+      </button>
+      <Button type="solid" htmlType={"submit"} className="mb-4 mt-[53px]" block>
         Send
       </Button>
     </form>
