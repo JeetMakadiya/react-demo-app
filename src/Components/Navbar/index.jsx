@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../Icons/Logo";
 import User from "../../Icons/User";
 import AppRoutes from "../../Utils/routes";
@@ -8,6 +8,7 @@ import Button from "../UI/Button";
 
 const Navbar = () => {
   const authState = useSelector((store) => store.auth);
+  const navigate = useNavigate();
   let loggedInUserName = "";
   if (authState.loggedInUserDetails) {
     loggedInUserName =
@@ -18,7 +19,12 @@ const Navbar = () => {
   return (
     <>
       <div className="bg-[#242F3A] h-[58px] w-full flex justify-between items-center px-5">
-        <Logo width={141.58} height={35.01} />
+        <Logo
+          width={141.58}
+          height={35.01}
+          onClick={() => navigate(AppRoutes.PostList)}
+          className="cursor-pointer"
+        />
         <div className="flex items-center">
           {!authState.isLoggedIn && (
             <>

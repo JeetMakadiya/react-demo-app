@@ -9,6 +9,7 @@ const DatePicker = ({
   onChange,
   touched,
   errors,
+  value,
   ...props
 }) => {
   const dateRef = useRef();
@@ -23,6 +24,7 @@ const DatePicker = ({
         className={`mt-2 p-4 rounded h-[52px] w-full bg-[#F9F9F9] outline-1 outline-[#FF7F00]`}
         placeholder={"Select Date"}
         {...props}
+        value={value}
         onChange={onChange}
         onFocus={(e) => (e.target.type = "date")}
         onBlur={(e) => (e.target.type = "text")}

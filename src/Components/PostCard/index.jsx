@@ -3,11 +3,17 @@ import Calender from "../../Icons/Calender";
 import Clock from "../../Icons/Clock";
 import Like from "../../Icons/Like";
 import More from "../../Icons/More";
-import UserImage from "../../Images/user.png";
 import DisplayMedia from "../DisplayMedia";
 import Modal from "../Modal";
 
-const PostCard = ({ userImage, userName, date, time, description, media }) => {
+const PostCard = ({
+  userImage,
+  userName,
+  date,
+  time,
+  description,
+  mediaList,
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
@@ -22,7 +28,7 @@ const PostCard = ({ userImage, userName, date, time, description, media }) => {
         <div className="flex justify-between items-center">
           <div className="flex items-center">
             <img
-              src={UserImage}
+              src={userImage}
               alt=""
               srcset=""
               className="w-[68px] h-[68px]"
@@ -57,7 +63,11 @@ const PostCard = ({ userImage, userName, date, time, description, media }) => {
           </div>
         </div>
         <p className="font-medium text-[#222A33] mt-5">{description}</p>
-        <DisplayMedia className="mt-[19px]" size={"small"} />
+        <DisplayMedia
+          className="mt-[19px]"
+          size={"small"}
+          mediaList={mediaList}
+        />
       </div>
       <Modal
         title={"Liked By"}

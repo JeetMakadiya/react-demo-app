@@ -20,11 +20,7 @@ const Button = ({
       : orangeOutlined
   }  ${block ? "w-full h-[52px]" : "w-[118px] h-[42px] "} `;
   return (
-    <button
-      className={btnStyle + ` ${className}`}
-      htmlType={htmlType}
-      {...props}
-    >
+    <button className={btnStyle + ` ${className}`} type={htmlType} {...props}>
       {children}
     </button>
   );

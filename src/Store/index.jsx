@@ -1,12 +1,12 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-// import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 import { authReducer } from "./Auth";
-// import rootReducer from "./reducers";
 import storage from "redux-persist-indexeddb-storage";
+import { postsReducer } from "./Post";
 
 const rootReducer = combineReducers({
   auth: authReducer,
+  post: postsReducer,
 });
 
 const persistConfig = {

@@ -23,7 +23,6 @@ const LoginForm = ({ className }) => {
       },
       validationSchema: validationSchema.loginFormSchema,
       onSubmit: async (values) => {
-        console.log(values);
         if (await checkLogin(authState.users, values)) {
           await dispatch(login(values));
           showToast("success", "User Logged In Successfully");
@@ -33,7 +32,6 @@ const LoginForm = ({ className }) => {
         }
       },
     });
-  console.log(authState);
   return (
     <form className={`${className}`} onSubmit={handleSubmit}>
       <Input

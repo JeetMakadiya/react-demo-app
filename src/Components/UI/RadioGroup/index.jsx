@@ -20,7 +20,7 @@ const RadioGroup = ({
           name={name}
           {...props}
           value="Male"
-          checked={value === "Male"}
+          checked={value === "Male" ? true : false}
           className="mr-[43px]"
         />
         <Radio
@@ -28,7 +28,7 @@ const RadioGroup = ({
           name={name}
           {...props}
           value="Female"
-          checked={value === "Female"}
+          checked={value === "Female" ? true : false}
         />
       </div>
       {touched && errors && touched[name] && errors[name] ? (

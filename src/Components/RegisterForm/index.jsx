@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Input from "../UI/Input";
 import Button from "../UI/Button";
 import Radio from "../UI/Radio";
@@ -13,6 +13,7 @@ import { showToast } from "../../Utils/showToast";
 import { useNavigate } from "react-router-dom";
 import AppRoutes from "../../Utils/routes";
 import { isUserExist } from "../../Utils/auth.utils";
+import { convertToBase64 } from "../../Utils/convertToBase64";
 
 const RegisterForm = ({ className }) => {
   const dispatch = useDispatch();
@@ -43,11 +44,9 @@ const RegisterForm = ({ className }) => {
     validationSchema: validationSchema.registerFormSchema,
     onSubmit: async (values) => {
       const userExist = await isUserExist(authState.users, values.email);
-      console.log("User exist", userExist);
       if (!userExist) {
-        await dispatch(
-          register({ ...values, image: URL.createObjectURL(values.image) })
-        );
+        let base64Img = await convertToBase64(values.image);
+        await dispatch(register({ ...values, image: base64Img }));
         showToast("success", "User Registered Successfully");
         navigate(AppRoutes.Login);
       } else {
@@ -61,8 +60,6 @@ const RegisterForm = ({ className }) => {
         <ImageUpload
           label={"Upload Image"}
           name={"image"}
-          // {...getFieldProps("image")}
-          // onChange={()}
           setFieldValue={setFieldValue}
           touched={touched}
           errors={errors}
