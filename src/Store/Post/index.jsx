@@ -6,7 +6,7 @@ import { createSlice } from "@reduxjs/toolkit";
 //   userEmail: "",
 //   postDate: "",
 //   postTime: "",
-//   postLikes: [],
+//   postLikes: [{userImage: "", userName: ""}],
 //   postDescription: "",
 //   postMedias: [],
 // }
@@ -22,9 +22,14 @@ const postSlice = createSlice({
     createPost(state, action) {
       state.posts.push(action.payload);
     },
+    likePost(state, action) {
+      let postId = action.payload.postId;
+      let user = action.payload.user;
+      state.posts[postId].postLikes.push(user);
+    },
   },
 });
 
-export const { createPost } = postSlice.actions;
+export const { createPost, likePost } = postSlice.actions;
 
 export const postsReducer = postSlice.reducer;

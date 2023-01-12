@@ -31,7 +31,6 @@ const ResetPasswordForm = ({ className }) => {
     },
     validationSchema: validationSchema.resetPasswordFormSchema,
     onSubmit: async (values) => {
-      console.log(email);
       dispatch(resetPassword({ email, password: values.newPassword }));
       showToast("success", "Password Reseted Successfully");
       navigate(AppRoutes.Login);

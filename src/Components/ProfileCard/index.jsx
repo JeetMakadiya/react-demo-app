@@ -20,7 +20,7 @@ const ProfileCard = () => {
     navigate(AppRoutes.Login);
   };
   return (
-    <div className="sm:w-[380px] w-[300px] bg-white flex flex-col items-center pt-[45px] px-[18px]">
+    <div className="md:flex-[1_1_0%] w-full bg-white flex flex-col items-center pt-[45px] px-[18px] rounded">
       <div>
         <img
           src={image}
@@ -32,8 +32,8 @@ const ProfileCard = () => {
           {firstName + " " + lastName}
         </span>
       </div>
-      <div className="bg-[#F9F9FC] sm:w-[344px] w-[270px] mt-[37px] pt-[18px] pl-[18px]">
-        <div className="text-sm ml-3 mb-6 flex items-center">
+      <div className="bg-[#F9F9FC] w-full mt-[37px] pt-[18px] pl-[18px]">
+        <div className="text-sm ml-3 mb-6 flex items-center break-all">
           <Mail size={"20px"} color={"#5E6367"} className="mr-4" />
           <span className="text-[#5E6367]">{email}</span>
         </div>

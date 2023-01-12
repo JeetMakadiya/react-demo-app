@@ -5,13 +5,17 @@ const DisplayMedia = ({ className, mediaList, size }) => {
     <div className={`flex flex-wrap ${className}`}>
       {mediaList &&
         mediaList.map((imageURL) => (
-          <img
-            src={imageURL}
-            alt="imgs"
-            className="mr-5 mb-5"
-            width={size === "small" ? "79.28px" : "144px"}
-            height={size === "small" ? "49px" : "89px"}
-          />
+          <div
+            className={`mr-5 mb-5 ${
+              size === "small" ? "w-[79.28px]" : "w-[144px]"
+            } ${size === "small" ? "h-[49px]" : "h-[89px]"} `}
+          >
+            <img
+              src={imageURL}
+              alt="imgs"
+              className="w-full h-full object-cover"
+            />
+          </div>
         ))}
     </div>
   );

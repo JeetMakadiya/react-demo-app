@@ -8,8 +8,11 @@ const PostList = () => {
     <div className="m-5">
       <h1 className="text-xl font-semibold">Post List</h1>
       {postList &&
-        postList.map((postItem) => (
+        postList.map((postItem, index) => (
           <PostCard
+            key={index}
+            postId={index}
+            userEmail={postItem.userEmail}
             userImage={postItem.userImage}
             userName={postItem.userName}
             date={postItem.postDate}

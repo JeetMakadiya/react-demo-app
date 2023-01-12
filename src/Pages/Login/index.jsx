@@ -1,12 +1,13 @@
 import React from "react";
 import LoginForm from "../../Components/LoginForm";
+import LoginSlider from "../../Components/LoginSlider";
 import PageHeader from "../../Components/PageHeader";
 
 const Login = () => {
   return (
-    <div className="flex xl:flex-row flex-col ">
-      <div className="xl:w-[calc(100vw*0.625)] h-[calc(100vh-58px)] w-screen bg-[#2F80ED]"></div>
-      <div className="xl:w-[calc(100vw*0.375)] xl:h-[calc(100vh-58px)] w-screen flex justify-center overflow-y-auto bg-white">
+    <div className="flex flex-row">
+      <LoginSlider />
+      <div className="flex-[3_3_0%] xl:h-[calc(100vh-58px)] min-h-[calc(100vh-58px)]  flex justify-center overflow-y-auto bg-white">
         <div className="mt-[80px] mb-[80px]">
           <PageHeader
             heading={"Welcome Back!"}

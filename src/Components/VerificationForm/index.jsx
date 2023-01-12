@@ -9,14 +9,12 @@ const VerificationForm = ({ className }) => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const email = searchParams.get("email");
-  const [disabled, setDisabled] = useState(false);
   const [otp, setOtp] = useState();
   const verifyOTP = () => {
     if (otp === "1234") {
-      setDisabled(true);
       showToast("success", "OTP Verified");
+      navigate(AppRoutes.ResetPassword + `?email=${email}`);
     } else {
-      setDisabled(false);
       showToast("error", "Wrong OTP");
     }
   };
@@ -29,9 +27,8 @@ const VerificationForm = ({ className }) => {
       <Button
         type="solid"
         htmlType={"button"}
-        className={`mb-[30px] mt-[53px] ${disabled ? "opacity-50" : ""}`}
+        className={`mb-[30px] mt-[53px]`}
         onClick={verifyOTP}
-        disabled={disabled}
         block
       >
         Verify
@@ -39,12 +36,10 @@ const VerificationForm = ({ className }) => {
       <Button
         type="outlined-orange"
         htmlType={"button"}
-        className={`${!disabled ? "opacity-50" : ""}`}
         onClick={() => {
-          navigate(AppRoutes.ResetPassword + `?email=${email}`);
+          navigate(AppRoutes.ForgotPassword);
         }}
         block
-        disabled={!disabled}
       >
         Change Email
       </Button>

@@ -1,6 +1,6 @@
 import React from "react";
 
-const NavMenu = ({ size, color, className }) => {
+const NavMenu = ({ size, color, className, onClick }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -8,6 +8,7 @@ const NavMenu = ({ size, color, className }) => {
       width={size}
       height={size}
       className={`cursor-pointer ${className}`}
+      onClick={onClick}
     >
       <path
         fill="none"

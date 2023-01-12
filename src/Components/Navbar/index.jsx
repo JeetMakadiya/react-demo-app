@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { SidePane } from "react-side-pane";
 import Logo from "../../Icons/Logo";
+import NavMenu from "../../Icons/NavMenu";
 import User from "../../Icons/User";
 import AppRoutes from "../../Utils/routes";
 import Button from "../UI/Button";
 
 const Navbar = () => {
+  const [openSidepane, setOpenSidepane] = useState(false);
   const authState = useSelector((store) => store.auth);
   const navigate = useNavigate();
   let loggedInUserName = "";
@@ -25,7 +28,13 @@ const Navbar = () => {
           onClick={() => navigate(AppRoutes.PostList)}
           className="cursor-pointer"
         />
-        <div className="flex items-center">
+        <NavMenu
+          color={"white"}
+          size={"30px"}
+          className="md:hidden"
+          onClick={() => setOpenSidepane(true)}
+        />
+        <div className="md:flex md:items-center hidden">
           {!authState.isLoggedIn && (
             <>
               <Link to={AppRoutes.Login}>
@@ -46,7 +55,7 @@ const Navbar = () => {
                 </Button>
               </Link>
               <Link to={AppRoutes.Profile}>
-                <span className="mt-1 inline-flex">
+                <span className="mt-1 flex justify-center items-center">
                   <User color={"white"} size={26.67} className="mr-2" />
                   <span className="text-white">{loggedInUserName}</span>
                 </span>
@@ -54,6 +63,49 @@ const Navbar = () => {
             </>
           )}
         </div>
+        <SidePane
+          open={openSidepane}
+          autoWidth={true}
+          onClose={() => setOpenSidepane(false)}
+        >
+          <div className="relative flex flex-col px-6 pt-16 w-72">
+            <span
+              className="absolute top-2 left-4 text-xl font-bold text-[#FF7F00]"
+              onClick={() => setOpenSidepane(false)}
+            >
+              x
+            </span>
+            {!authState.isLoggedIn && (
+              <>
+                <Link to={AppRoutes.Login}>
+                  <Button type="outlined-orange" block className="mb-6">
+                    Login
+                  </Button>
+                </Link>
+                <Link to={AppRoutes.Register}>
+                  <Button type="solid" block>
+                    Register
+                  </Button>
+                </Link>
+              </>
+            )}
+            {authState.isLoggedIn && (
+              <>
+                <Link to={AppRoutes.Profile}>
+                  <span className="mt-1 flex justify-center mb-6">
+                    <User color={"#FF7F00"} size={26.67} className="mr-2" />
+                    <span className="text-[#FF7F00]">{loggedInUserName}</span>
+                  </span>
+                </Link>
+                <Link to={AppRoutes.CreatePost}>
+                  <Button type="outlined-orange" block className="mr-5">
+                    Create Post
+                  </Button>
+                </Link>
+              </>
+            )}
+          </div>
+        </SidePane>
       </div>
     </>
   );

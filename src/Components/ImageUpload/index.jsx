@@ -33,7 +33,7 @@ const ImageUpload = ({
       <div className="flex items-center">
         <img
           src={file}
-          className="w-[102px] h-[102px] mr-9 bg-[#979797] border-2 border-[#979797] rounded-full"
+          className="sm:w-[102px] sm:h-[102px] w-[92px] h-[92px] mr-9 bg-[#979797] border-2 border-[#979797] rounded-full"
         />
         <button
           className="bg-[#F9F9F9] border-2 border-[#333333] w-[125px] h-[32px] rounded cursor-pointer flex items-center justify-center"

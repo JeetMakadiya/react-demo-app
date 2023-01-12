@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Calender from "../../Icons/Calender";
 import Clock from "../../Icons/Clock";
 import Like from "../../Icons/Like";
 import More from "../../Icons/More";
+import { likePost } from "../../Store/Post";
 import DisplayMedia from "../DisplayMedia";
 import Modal from "../Modal";
 
@@ -13,26 +15,40 @@ const PostCard = ({
   time,
   description,
   mediaList,
+  userEmail,
+  postId,
 }) => {
+  const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const state = useSelector((store) => store);
+  const authState = state.auth;
+  const postState = state.post;
   const showModal = () => {
     setIsModalOpen(true);
   };
   const handleCancel = () => {
     setIsModalOpen(false);
   };
-
+  const handleLike = () => {
+    dispatch(
+      likePost({
+        postId: postId,
+        user: {
+          userImage: authState.loggedInUserDetails.image,
+          userName:
+            authState.loggedInUserDetails.firstName +
+            " " +
+            authState.loggedInUserDetails.lastName,
+        },
+      })
+    );
+  };
   return (
     <>
       <div className="mt-3 bg-white shadow-white p-3">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
-            <img
-              src={userImage}
-              alt=""
-              srcset=""
-              className="w-[68px] h-[68px]"
-            />
+            <img src={userImage} className="w-[68px] h-[68px] rounded-full" />
             <div className="ml-[18px]">
               <span className="text-lg font-semibold text-[#222A33]">
                 {userName}
@@ -46,12 +62,9 @@ const PostCard = ({
                   <Clock size={"16px"} color={"#9494AE"} />
                   <span className="ml-1 text-sm">{time}</span>
                 </div>
-                <div
-                  className="flex items-center mr-4 cursor-pointer"
-                  onClick={showModal}
-                >
-                  <Like size={"16px"} color={"#9494AE"} />
-                  <span className="ml-1 text-sm">
+                <div className="flex items-center mr-4 cursor-pointer">
+                  <Like size={"16px"} color={"#9494AE"} onClick={handleLike} />
+                  <span className="ml-1 text-sm" onClick={showModal}>
                     Liked by John and 50 others
                   </span>
                 </div>
@@ -73,6 +86,7 @@ const PostCard = ({
         title={"Liked By"}
         isModalOpen={isModalOpen}
         handleCancel={handleCancel}
+        userList={postState.posts[postId].postLikes}
       />
     </>
   );

@@ -3,7 +3,6 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { showToast } from "../../Utils/showToast";
-import validationSchema from "../../Utils/validationSchema";
 import ImageUpload from "../ImageUpload";
 import Button from "../UI/Button";
 import DatePicker from "../UI/Datepicker";
@@ -85,7 +84,7 @@ const ProfileForm = ({ className }) => {
           value={values.image}
           touched={touched}
           errors={errors}
-          className="mb-6 sm:mr-[60px] mr-0"
+          className="mb-6 xl:mr-[60px]"
         />
         <div className="mb-6"></div>
       </div>

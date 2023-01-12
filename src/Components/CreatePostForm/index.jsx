@@ -71,7 +71,7 @@ const CreatePostForm = ({ className }) => {
         setFieldValue={setFieldValue}
         name={"medias"}
       />
-      <div className="mt-[76px] flex justify-center">
+      <div className="mt-4 flex justify-center bg-white py-6">
         <Button
           type={"outlined-orange"}
           className="mr-4"
