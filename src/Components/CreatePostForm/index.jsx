@@ -1,11 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import AppRoutes from "../../Utils/routes";
-import DisplayMedia from "../DisplayMedia";
 import Button from "../UI/Button";
 import Textarea from "../UI/Textarea";
 import { useFormik } from "formik";
-import validationSchema from "../../Utils/validationSchema";
 import AddMedia from "../AddMedia";
 import { useDispatch, useSelector } from "react-redux";
 import { createPost } from "../../Store/Post";
@@ -17,10 +15,7 @@ const CreatePostForm = ({ className }) => {
   const authState = useSelector((store) => store.auth);
   const {
     getFieldProps,
-    handleChange,
-    values,
     handleSubmit,
-    handleBlur,
     touched,
     errors,
     setFieldValue,
@@ -30,7 +25,6 @@ const CreatePostForm = ({ className }) => {
       postDescription: "",
       medias: [],
     },
-    // validationSchema: validationSchema.registerFormSchema,
     onSubmit: async (values) => {
       const dateObj = new Date();
       let date = dateObj.toLocaleDateString();
@@ -71,10 +65,10 @@ const CreatePostForm = ({ className }) => {
         setFieldValue={setFieldValue}
         name={"medias"}
       />
-      <div className="mt-4 flex justify-center bg-white py-6">
+      <div className="mt-4 flex sm:flex-row justify-center flex-col items-center bg-white py-6">
         <Button
           type={"outlined-orange"}
-          className="mr-4"
+          className="sm:mr-4 sm:mb-0 mb-5"
           onClick={() => navigate(AppRoutes.PostList)}
         >
           Cancel

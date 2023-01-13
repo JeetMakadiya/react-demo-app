@@ -84,11 +84,11 @@ const ProfileForm = ({ className }) => {
           value={values.image}
           touched={touched}
           errors={errors}
-          className="mb-6 xl:mr-[60px]"
+          className="mb-6 xl:mr-[60px] lg:mr-[30px]"
         />
         <div className="mb-6"></div>
       </div>
-      <div className="flex flex-col xl:flex-row">
+      <div className="flex flex-col lg:flex-row">
         <Input
           label="First Name*"
           id={"firstName"}
@@ -98,7 +98,7 @@ const ProfileForm = ({ className }) => {
           {...getFieldProps("firstName")}
           touched={touched}
           errors={errors}
-          className="mb-6 xl:mr-[60px]"
+          className="mb-6 xl:mr-[60px] lg:mr-[30px]"
         />
         <Input
           label="Last Name*"
@@ -112,7 +112,7 @@ const ProfileForm = ({ className }) => {
           className="mb-6"
         />
       </div>
-      <div className="flex flex-col xl:flex-row ">
+      <div className="flex flex-col lg:flex-row ">
         <Input
           label="Email"
           id="email"
@@ -122,7 +122,7 @@ const ProfileForm = ({ className }) => {
           {...getFieldProps("email")}
           touched={touched}
           errors={errors}
-          className="mb-6 xl:mr-[60px]"
+          className="mb-6 xl:mr-[60px] lg:mr-[30px]"
           disabled
         />
         <Input
@@ -137,7 +137,7 @@ const ProfileForm = ({ className }) => {
           className="mb-6"
         />
       </div>
-      <div className="flex flex-col xl:flex-row">
+      <div className="flex flex-col lg:flex-row">
         <DatePicker
           label="Date of Birth"
           id="dob"
@@ -147,7 +147,7 @@ const ProfileForm = ({ className }) => {
           onChange={handleChange}
           touched={touched}
           errors={errors}
-          className="mb-4 xl:mr-[60px]"
+          className="mb-4 xl:mr-[60px] lg:mr-[30px]"
         />
         <RadioGroup
           label="Gender"
@@ -160,11 +160,11 @@ const ProfileForm = ({ className }) => {
           className="mb-4"
         />
       </div>
-      <div className="flex flex-col xl:flex-row">
+      <div className="flex flex-col lg:flex-row">
         <Button
           htmlType={"submit"}
           type="solid"
-          className="mb-4 xl:mr-[60px]"
+          className="mb-4 xl:mr-[60px] lg:mr-[30px]"
           block
         >
           Save

@@ -20,19 +20,19 @@ const ProfileCard = () => {
     navigate(AppRoutes.Login);
   };
   return (
-    <div className="md:flex-[1_1_0%] w-full bg-white flex flex-col items-center pt-[45px] px-[18px] rounded">
+    <div className="lg:flex-[1_1_0%] md:flex-[2_2_0%] w-full bg-white flex flex-col items-center py-8 px-[18px] rounded">
       <div>
         <img
           src={image}
           alt=""
-          className="w-[170px] h-[170px] mb-[21px] rounded-full"
+          className="w-[140px] h-[140px] mb-[21px] rounded-full"
           srcset=""
         />
         <span className="text-2xl font-medium text-[#252525]">
           {firstName + " " + lastName}
         </span>
       </div>
-      <div className="bg-[#F9F9FC] w-full mt-[37px] pt-[18px] pl-[18px]">
+      <div className="bg-[#F9F9FC] w-full mt-6 pt-[18px] pl-[18px]">
         <div className="text-sm ml-3 mb-6 flex items-center break-all">
           <Mail size={"20px"} color={"#5E6367"} className="mr-4" />
           <span className="text-[#5E6367]">{email}</span>
@@ -50,7 +50,7 @@ const ProfileCard = () => {
           <span className="text-[#5E6367]">{dob}</span>
         </div>
       </div>
-      <div className="mt-9 mb-[30px] w-[170px] flex flex-col">
+      <div className="mt-8 w-[170px] flex flex-col">
         <Button
           type={"outlined-orange"}
           block
