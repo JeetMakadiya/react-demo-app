@@ -10,11 +10,13 @@ import ResetPassword from "./Pages/ResetPassword";
 import Verification from "./Pages/Verification";
 import RootLayout from "./Components/Layouts/RootLayout";
 import AppRoutes from "./Utils/routes";
+import ErrorPage from "./Components/ErrorPage";
 
-export const router = createBrowserRouter([
+export const publicRouter = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -39,6 +41,20 @@ export const router = createBrowserRouter([
       {
         path: AppRoutes.ResetPassword,
         element: <ResetPassword />,
+      },
+    ],
+  },
+]);
+
+export const protectedRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootLayout />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
+        element: <Navigate to={AppRoutes.PostList} replace />,
       },
       {
         path: AppRoutes.CreatePost,

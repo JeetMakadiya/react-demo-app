@@ -56,7 +56,10 @@ const Navbar = () => {
               </Link>
               <Link to={AppRoutes.Profile}>
                 <span className="mt-1 flex justify-center items-center">
-                  <User color={"white"} size={26.67} className="mr-2" />
+                  <img
+                    src={authState.loggedInUserDetails.image}
+                    className="w-[26.67px] h-[26.67px] rounded-full mr-2"
+                  />
                   <span className="text-white">{loggedInUserName}</span>
                 </span>
               </Link>

@@ -5,8 +5,8 @@ const Modal = ({ title, isModalOpen, handleCancel, userList }) => {
     <>
       {isModalOpen ? (
         <>
-          <div className="justify-center items-center flex my-24 fixed inset-0 z-50 outline-none focus:outline-none">
-            <div className="relative w-auto mx-auto md:w-[536px] w-[300px] h-full">
+          <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 outline-none focus:outline-none">
+            <div className="relative w-auto mx-auto md:w-[536px] w-[300px]">
               {/*content*/}
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full outline-none focus:outline-none h-full">
                 {/*header*/}
@@ -21,15 +21,13 @@ const Modal = ({ title, isModalOpen, handleCancel, userList }) => {
                 </div>
                 {/*body*/}
                 <div className="relative px-[34px] flex-auto bg-white rounded-b-[20px] overflow-y-auto">
-                  {userList ? (
+                  {userList && !!userList.length ? (
                     <>
                       {userList.map((item) => (
                         <div className="flex items-center border-b border-b-[#E0E0E0] pb-4 pt-4">
                           <img
                             src={item.userImage}
                             className="w-[46px] h-[46px] rounded-full"
-                            alt=""
-                            srcset=""
                           />
                           <span className="ml-5 font-medium text-sm">
                             {item.userName}
@@ -38,13 +36,18 @@ const Modal = ({ title, isModalOpen, handleCancel, userList }) => {
                       ))}
                     </>
                   ) : (
-                    "No Likes"
+                    <div className="text-lg flex justify-center py-10 opacity-30">
+                      No Likes
+                    </div>
                   )}
                 </div>
               </div>
             </div>
           </div>
-          <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+          <div
+            className="opacity-80 fixed inset-0 z-40 bg-black"
+            onClick={() => handleCancel()}
+          ></div>
         </>
       ) : null}
     </>

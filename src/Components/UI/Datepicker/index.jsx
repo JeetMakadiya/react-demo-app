@@ -21,7 +21,11 @@ const DatePicker = ({
         name={name}
         type={"text"}
         ref={dateRef}
-        className={`mt-2 p-4 rounded h-[52px] w-full bg-[#F9F9F9] outline-1 outline-[#FF7F00]`}
+        className={`mt-2 p-4 rounded h-[52px] w-full bg-[#F9F9F9] outline-1 outline-[#FF7F00] ${
+          touched && errors && touched[name] && errors[name]
+            ? "border border-red-500"
+            : ""
+        }`}
         placeholder={"Select Date"}
         {...props}
         value={value}

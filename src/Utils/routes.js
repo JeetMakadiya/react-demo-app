@@ -9,4 +9,21 @@ const AppRoutes = {
   Profile: "/profile",
   ChangePassword: "/changepassword",
 };
+
+const publicRoutes = [
+  "/login",
+  "/register",
+  "/forgotpassword",
+  "/verification",
+  "/resetPassword",
+];
+
+const protectedRoutes = [
+  "/createpost",
+  "/postlist",
+  "/profile",
+  "/changepassword",
+];
+
 export default AppRoutes;
+export { publicRoutes, protectedRoutes };

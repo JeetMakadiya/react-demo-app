@@ -6,6 +6,7 @@ const Button = ({
   className,
   block = false,
   htmlType,
+  onClick,
   ...props
 }) => {
   const solid = "bg-[#FF7F00] text-white";
@@ -20,7 +21,12 @@ const Button = ({
       : orangeOutlined
   }  ${block ? "w-full h-[52px]" : "w-[118px] h-[42px] "} `;
   return (
-    <button className={btnStyle + ` ${className}`} type={htmlType} {...props}>
+    <button
+      className={btnStyle + ` ${className}`}
+      type={htmlType}
+      onClick={onClick}
+      {...props}
+    >
       {children}
     </button>
   );

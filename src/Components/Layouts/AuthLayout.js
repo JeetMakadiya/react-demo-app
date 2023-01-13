@@ -7,7 +7,6 @@ import AppRoutes from "../../Utils/routes";
 const AuthLayout = ({ children }) => {
   const { pathname } = useLocation();
   const isRegisterPage = pathname.includes(AppRoutes.Register);
-  console.log(isRegisterPage);
   return (
     <div className="flex flex-row min-h-[calc(100vh-58px)]">
       <div className="flex-[2_2_0%] xl:flex xl:flex-col xl:justify-between xl:items-center  h-[calc(100vh-58px)] bg-[#2F80ED] hidden">

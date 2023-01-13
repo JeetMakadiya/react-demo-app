@@ -23,7 +23,11 @@ const Input = ({
         type={type}
         onChange={onChange}
         value={value}
-        className={`mt-2 p-4 rounded h-[52px] w-full bg-[#F9F9F9] outline-1 outline-[#FF7F00] text-sm`}
+        className={`mt-2 p-4 rounded h-[52px] w-full bg-[#F9F9F9] outline-1 outline-[#FF7F00] text-sm border ${
+          touched && errors && touched[name] && errors[name]
+            ? "border-red-500"
+            : ""
+        }`}
         placeholder={placeholder}
         {...props}
         disabled={disabled}
