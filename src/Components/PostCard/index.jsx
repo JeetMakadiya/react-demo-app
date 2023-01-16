@@ -4,7 +4,7 @@ import Calender from "../../Icons/Calender";
 import Clock from "../../Icons/Clock";
 import Like from "../../Icons/Like";
 import More from "../../Icons/More";
-import { likePost } from "../../Store/Post";
+import { likePost, unLikePost } from "../../Store/Post";
 import DisplayMedia from "../DisplayMedia";
 import Modal from "../Modal";
 
@@ -42,6 +42,19 @@ const PostCard = ({
     if (!likedByLoggedInUser) {
       dispatch(
         likePost({
+          postId: postId,
+          user: {
+            userImage: authState.loggedInUserDetails.image,
+            userName:
+              authState.loggedInUserDetails.firstName +
+              " " +
+              authState.loggedInUserDetails.lastName,
+          },
+        })
+      );
+    } else {
+      dispatch(
+        unLikePost({
           postId: postId,
           user: {
             userImage: authState.loggedInUserDetails.image,

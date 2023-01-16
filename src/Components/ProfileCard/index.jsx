@@ -7,6 +7,7 @@ import Mail from "../../Icons/Mail";
 import Phone from "../../Icons/Phone";
 import { logout } from "../../Store/Auth";
 import AppRoutes from "../../Utils/routes";
+import { showToast } from "../../Utils/showToast";
 import Button from "../UI/Button";
 
 const ProfileCard = () => {
@@ -18,6 +19,7 @@ const ProfileCard = () => {
   const handleLogout = () => {
     dispatch(logout());
     navigate(AppRoutes.Login);
+    showToast("success", "User Logout Successfully.");
   };
   return (
     <div className="lg:flex-[1_1_0%] md:flex-[2_2_0%] w-full bg-white flex flex-col items-center py-8 px-[18px] rounded">

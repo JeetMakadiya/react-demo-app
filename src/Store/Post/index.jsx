@@ -27,9 +27,18 @@ const postSlice = createSlice({
       let user = action.payload.user;
       state.posts[postId].postLikes.push(user);
     },
+    unLikePost(state, action) {
+      let postId = action.payload.postId;
+      let user = action.payload.user;
+      let postLikes = state.posts[postId].postLikes;
+      let index = postLikes.findIndex(
+        (item) => item.userName === user.userName
+      );
+      state.posts[postId].postLikes.splice(index, 1);
+    },
   },
 });
 
-export const { createPost, likePost } = postSlice.actions;
+export const { createPost, likePost, unLikePost } = postSlice.actions;
 
 export const postsReducer = postSlice.reducer;

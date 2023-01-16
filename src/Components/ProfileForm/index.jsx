@@ -69,8 +69,14 @@ const ProfileForm = ({ className }) => {
       gender: Yup.string().required("*Gender is required."),
     }),
     onSubmit: async (values) => {
-      let base64Img = await convertToBase64(values.image);
-      dispatch(updateDetails({ ...values, image: base64Img }));
+      let userDetails = {};
+      if (values.image instanceof File) {
+        let base64Img = await convertToBase64(values.image);
+        userDetails = { ...values, image: base64Img };
+      } else {
+        userDetails = values;
+      }
+      await dispatch(updateDetails(userDetails));
       showToast("success", "User Details Updated.");
     },
   });
