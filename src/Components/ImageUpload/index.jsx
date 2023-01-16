@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import fakeUser from "../../Images/fake-user.png";
 
 const ImageUpload = ({
   className,
@@ -32,7 +33,7 @@ const ImageUpload = ({
       />
       <div className="flex items-center">
         <img
-          src={file}
+          src={file || fakeUser}
           className="sm:w-[102px] sm:h-[102px] w-[92px] h-[92px] mr-9 bg-[#979797] border-2 border-[#979797] rounded-full"
         />
         <button

@@ -17,7 +17,7 @@ const ForgotPassword = () => {
         <PageHeader
           heading={"Forgot password?"}
           subHeading={subHeading}
-          className="md:w-[343px] w-screen px-8 md:px-0"
+          className=" w-screen px-8 md:px-0"
         />
         <div className="md:w-[343px] w-screen px-8 md:px-0">
           <ForgotPasswordForm className="mt-9" />

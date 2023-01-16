@@ -58,7 +58,7 @@ const ResetPasswordForm = ({ className }) => {
         {...getFieldProps("confirmPassword")}
         touched={touched}
         errors={errors}
-        className="mb-4"
+        className="mb-6"
       />
       <Button type="solid" htmlType={"submit"} className="mb-4" block>
         Save

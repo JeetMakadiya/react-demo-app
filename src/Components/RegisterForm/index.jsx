@@ -38,8 +38,8 @@ const RegisterForm = ({ className }) => {
       password: "",
       confirmPassword: "",
       dob: null,
-      gender: "",
-      agreement: "",
+      gender: "Female",
+      agreement: "agree",
     },
     validationSchema: validationSchema.registerFormSchema,
     onSubmit: async (values) => {
@@ -93,7 +93,7 @@ const RegisterForm = ({ className }) => {
       </div>
       <div className="flex flex-col md:flex-row ">
         <Input
-          label="Email"
+          label="Email*"
           id="email"
           name="email"
           type="email"
@@ -141,7 +141,7 @@ const RegisterForm = ({ className }) => {
       </div>
       <div className="flex flex-col md:flex-row">
         <DatePicker
-          label="Date of Birth"
+          label="Date of Birth*"
           id="dob"
           name="dob"
           placeholder="Select date"
@@ -177,7 +177,7 @@ const RegisterForm = ({ className }) => {
         />
         <div className="w-full"></div>
       </div>
-      <div className="flex flex-col md:flex-row">
+      <div className="flex flex-col md:flex-row md:items-end">
         <Button
           htmlType={"submit"}
           type="solid"
@@ -186,7 +186,10 @@ const RegisterForm = ({ className }) => {
         >
           Get Started
         </Button>
-        <div className="w-full"></div>
+        <div className="w-full text-[13px] font-normal text-[#9494AE] mb-4">
+          @2020 All Rights Reserved. Engage Pulse Cookie Preferences, Privacy
+          and Tearms
+        </div>
       </div>
     </form>
   );

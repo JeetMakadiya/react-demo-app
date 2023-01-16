@@ -84,7 +84,7 @@ const ProfileForm = ({ className }) => {
     <form onSubmit={handleSubmit} className={`${className}`}>
       <div className="flex flex-col md:flex-row">
         <ImageUpload
-          label={"Upload Image"}
+          label={"Change image"}
           name={"image"}
           setFieldValue={setFieldValue}
           value={values.image}
@@ -120,7 +120,7 @@ const ProfileForm = ({ className }) => {
       </div>
       <div className="flex flex-col lg:flex-row ">
         <Input
-          label="Email"
+          label="Email*"
           id="email"
           name="email"
           type="email"
@@ -145,7 +145,7 @@ const ProfileForm = ({ className }) => {
       </div>
       <div className="flex flex-col lg:flex-row">
         <DatePicker
-          label="Date of Birth"
+          label="Date of Birth*"
           id="dob"
           name="dob"
           placeholder="Select date"

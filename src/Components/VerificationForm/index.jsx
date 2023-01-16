@@ -19,7 +19,7 @@ const VerificationForm = ({ className }) => {
     }
   };
   return (
-    <div className="flex flex-col">
+    <div className={`flex flex-col ${className}`}>
       <OtpInput numInputs={4} otp={otp} setOtp={setOtp} />
       <div className="flex justify-center mt-[30px] text-[#FF7F00] text-sm font-normal">
         RESEND

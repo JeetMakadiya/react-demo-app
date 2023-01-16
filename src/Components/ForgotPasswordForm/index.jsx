@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Input from "../UI/Input";
 import Button from "../UI/Button";
 import { useFormik } from "formik";
@@ -10,6 +10,7 @@ import { showToast } from "../../Utils/showToast";
 import AppRoutes from "../../Utils/routes";
 
 const ForgotPasswordForm = ({ className }) => {
+  const [showResend, setShowResend] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const authState = useSelector((store) => store.auth);
@@ -22,6 +23,7 @@ const ForgotPasswordForm = ({ className }) => {
     touched,
     errors,
     setFieldValue,
+    resetForm,
   } = useFormik({
     initialValues: {
       email: "",
@@ -35,6 +37,7 @@ const ForgotPasswordForm = ({ className }) => {
           "success",
           "Verification Code Sent To Your Registered Mobile no.:1234"
         );
+        setShowResend(true);
       } else {
         showToast("error", "Wrong Email Address.");
       }
@@ -56,9 +59,9 @@ const ForgotPasswordForm = ({ className }) => {
       <button
         type="button"
         className="mt-3 text-[#FF7F00] text-sm font-normal cursor-pointer"
-        disabled
+        onClick={() => resetForm()}
       >
-        RESEND
+        RESET
       </button>
       <Button type="solid" htmlType={"submit"} className="mb-4 mt-[53px]" block>
         Send
